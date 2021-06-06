@@ -8,7 +8,6 @@
 
 int main(void)
 {
-    FILE *fp;
     char buf[MAX_WORD_LENGTH + 1] = {'\0'};
     struct trie_node* trie_root = trie_create();
 
@@ -19,6 +18,7 @@ int main(void)
         sprintf(filename, "data_%d.txt", i);
         printf("Reading file: %s\n", filename);
 
+        FILE *fp;
         fp = fopen(filename, "r");
         if (fp == NULL)
         {
@@ -39,6 +39,8 @@ int main(void)
 
             buf[j] = (char)c;
         }
+
+        fclose(fp);
     }
 
     memset(buf, 0, sizeof(buf));
@@ -46,7 +48,8 @@ int main(void)
     trie_print(trie_root, buf);
 
     trie_delete(trie_root);
-    free(fp);
+    printf("Done.\n");
+
 
     return 0;
 }
