@@ -5,3 +5,7 @@ add_executable(read-word-lists
     src/main.c
     src/trie.c
 )
+
+target_link_libraries(read-word-lists
+    pthread
+)
